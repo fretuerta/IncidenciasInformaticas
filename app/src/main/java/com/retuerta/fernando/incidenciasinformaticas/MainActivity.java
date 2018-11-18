@@ -1,5 +1,7 @@
 package com.retuerta.fernando.incidenciasinformaticas;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,15 +15,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.retuerta.fernando.incidenciasinformaticas.data.IncidenciasDbHelper;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    IncidenciasDbHelper dbHelper = new IncidenciasDbHelper(this);
+    static private SQLiteDatabase mDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        IncidenciasDbHelper dbHelper = new IncidenciasDbHelper(getApplicationContext());
+        mDb = dbHelper.getWritableDatabase();
+        dbHelper.onCreate(mDb);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +55,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -85,9 +96,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.gestion_incidencias) {
 
         } else if (id == R.id.lista_usuarios) {
-
+            Intent intent = new Intent(getApplicationContext(), ListaUsuariosActivity.class);
+            // intent.putExtra("username", usernames.get(i));
+            startActivity(intent);
         } else if (id == R.id.gestion_usuarios) {
-
+            Intent intent = new Intent(getApplicationContext(), GestionUsuariosActivity.class);
+            // intent.putExtra("username", usernames.get(i));
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

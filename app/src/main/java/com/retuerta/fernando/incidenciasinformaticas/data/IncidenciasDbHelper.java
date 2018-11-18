@@ -10,13 +10,13 @@ public class IncidenciasDbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     public IncidenciasDbHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context , DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        final String SQL_CREATE_USUARIOS_TABLE = "CREATE TABLE " +
+        final String SQL_CREATE_USUARIOS_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 IncidenciasContract.UsuariosEntry.TABLE_NAME + " (" +
                 IncidenciasContract.UsuariosEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 IncidenciasContract.UsuariosEntry.COLUMN_NOMBRE + " TEXT, " +
@@ -30,7 +30,7 @@ public class IncidenciasDbHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(SQL_CREATE_USUARIOS_TABLE);
 
-        final  String SQL_CREATE_INCIDENCIAS_TABLE = "CREATE TABLE " +
+        final  String SQL_CREATE_INCIDENCIAS_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 IncidenciasContract.IncidenciasEntry.TABLE_NAME + " (" +
                 IncidenciasContract.IncidenciasEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 IncidenciasContract.IncidenciasEntry.COLUMN_DNI + " TEXT, " +
