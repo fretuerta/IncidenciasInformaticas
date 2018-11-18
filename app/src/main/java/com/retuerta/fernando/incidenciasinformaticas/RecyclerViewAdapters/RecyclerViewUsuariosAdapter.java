@@ -25,13 +25,23 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nombre;
-        public TextView apellidos;
+        public TextView nombreTV;
+        public TextView apellidosTV;
+        public TextView dniTV;
+        public TextView nombreUsuarioTV;
+        public TextView passwordTV;
+        public TextView fotoTV;
+        public TextView tipoUsuarioTV;
 
         public ViewHolder(View v) {
             super(v);
-            nombre = (TextView) v.findViewById(R.id.nombre_usuario_textview);
-            apellidos = (TextView) v.findViewById(R.id.apellidos_usuario_textview);
+            nombreTV = (TextView) v.findViewById(R.id.nombre_RecyView);
+            apellidosTV = (TextView) v.findViewById(R.id.apellidos_RecyView);
+            dniTV = (TextView) v.findViewById(R.id.dni_RecyView);
+            nombreUsuarioTV = (TextView) v.findViewById(R.id.nombre_usuario_RecyView);
+            passwordTV = (TextView) v.findViewById(R.id.password_RecyView);
+            fotoTV = (TextView) v.findViewById(R.id.foto_RecyView);
+            tipoUsuarioTV = (TextView) v.findViewById(R.id.tipo_usuario_RecyView);
         }
     }
 
@@ -39,10 +49,9 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
     public RecyclerViewUsuariosAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         view1 = LayoutInflater.from(context).inflate(R.layout.usuarios_recyclerview_items, parent, false);
-
         viewHolder1 = new ViewHolder(view1);
-
         return (ViewHolder) viewHolder1;
+
     }
 
     @Override
@@ -52,10 +61,20 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
 
         String nombre = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_NOMBRE));
         String apellidos = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_APELLIDOS));
+        String dni = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_DNI));
+        String nombreUsuario = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_NOMBRE_USUARIO));
+        String password = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_PASSWORD));
+        String foto = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_FOTO));
+        String tipoUsuario = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_TIPO_USUARIO));
         final long id = mCursor.getLong(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry._ID));
 
-        holder.nombre.setText(String.valueOf(nombre));
-        holder.apellidos.setText(String.valueOf(apellidos));
+        holder.nombreTV.setText(String.valueOf(nombre));
+        holder.apellidosTV.setText(String.valueOf(apellidos));
+        holder.dniTV.setText(String.valueOf(dni));
+        holder.nombreUsuarioTV.setText(String.valueOf(nombreUsuario));
+        holder.passwordTV.setText(String.valueOf(password));
+        holder.fotoTV.setText(String.valueOf(foto));
+        holder.tipoUsuarioTV.setText(String.valueOf(tipoUsuario));
 
         // guarda el id sin presentarlo en pantalla
         holder.itemView.setTag(id);

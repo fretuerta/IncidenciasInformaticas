@@ -26,7 +26,7 @@ public class ListaUsuariosActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.setContentView(R.layout.activity_lista_usuarios);
+//        super.setContentView(R.layout.activity_lista_usuarios);
         super.onCreate(savedInstanceState);
 
         context = getApplicationContext();
