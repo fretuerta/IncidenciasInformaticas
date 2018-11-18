@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Incidencias Informáticas</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Abrir la barra de navegación</string>
+    <string name="navigation_drawer_close">Cerrar la barra de navegación</string>
     <string name="nav_header_title">Incidencias Informáticas</string>
     <string name="nav_header_subtitle">fernando.retuerta@gmail.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_desc">Cabecera de navegación</string>
     <string name="action_settings">Configuración</string>
 </resources>

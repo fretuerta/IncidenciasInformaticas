@@ -20,8 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GestionUsuariosActivity" />
-        <activity android:name=".ListaUsuariosActivity"></activity>
+        <activity android:name=".GestionUsuariosActivity"
+            android:label="Gestión de usuarios"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ListaUsuariosActivity"
+            android:label="Listado de usuarios"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

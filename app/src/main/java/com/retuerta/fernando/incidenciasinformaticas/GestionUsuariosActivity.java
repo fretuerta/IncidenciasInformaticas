@@ -4,40 +4,39 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
 import com.retuerta.fernando.incidenciasinformaticas.data.IncidenciasContract;
 import com.retuerta.fernando.incidenciasinformaticas.data.IncidenciasDbHelper;
 
-public class GestionUsuariosActivity extends AppCompatActivity {
+public class GestionUsuariosActivity extends BaseActivity {
 
     static private SQLiteDatabase mDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        super.setContentView(R.layout.activity_gestion_usuarios);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gestion_usuarios);
 
         Intent intent = getIntent();
         // String user = intent.getStringExtra("user");
 
         setTitle("Añadir un nuevo usuario");
 
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.activity_gestion_usuarios, contentFrameLayout);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.getMenu().getItem(0).setChecked(true);
+
         //Utilizar el dbHelper para escribir en la base de datos
         IncidenciasDbHelper dbHelper = new IncidenciasDbHelper(this);
         mDb = dbHelper.getWritableDatabase();
 
     }
-    /*
-            public static final String COLUMN_NOMBRE = "nombre";
-        public static final String COLUMN_APELLIDOS = "apellidos";
-        public static final String COLUMN_DNI = "dni";
-        public static final String COLUMN_NOMBRE_USUARIO = "nombre_usuario";
-        public static final String COLUMN_PASSWORD = "password";
-        public static final String COLUMN_FOTO = "foto";
-        public static final String COLUMN_TIPO_USUARIO = "tipo_usuario";
-    */
 
     public void addUsuarioToTable(String nombre, String apellidos, String dni, String nombreUsuario,
                                   String password, String foto, String tipoUsuario) {

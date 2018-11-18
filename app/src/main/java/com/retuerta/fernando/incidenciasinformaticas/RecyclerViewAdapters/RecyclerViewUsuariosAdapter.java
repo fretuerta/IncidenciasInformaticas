@@ -25,11 +25,13 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textView;
+        public TextView nombre;
+        public TextView apellidos;
 
         public ViewHolder(View v) {
             super(v);
-            textView = (TextView) v.findViewById(R.id.nombre_textview);
+            nombre = (TextView) v.findViewById(R.id.nombre_usuario_textview);
+            apellidos = (TextView) v.findViewById(R.id.apellidos_usuario_textview);
         }
     }
 
@@ -49,9 +51,11 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
         if (!mCursor.moveToPosition(position)) return;
 
         String nombre = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_NOMBRE));
+        String apellidos = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_APELLIDOS));
         final long id = mCursor.getLong(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry._ID));
 
-        holder.textView.setText(String.valueOf(nombre));
+        holder.nombre.setText(String.valueOf(nombre));
+        holder.apellidos.setText(String.valueOf(apellidos));
 
         // guarda el id sin presentarlo en pantalla
         holder.itemView.setTag(id);

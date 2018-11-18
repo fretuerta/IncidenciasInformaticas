@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_lista_incidencias"
+        android:icon="@drawable/ic_listado_incidencias"
+        android:title="Listado de incidencias" />
+    <item
+        android:id="@+id/navigation_gestion_incidencias"
+        android:icon="@drawable/ic_gestion_incidencias"
+        android:title="Gestión de incidencias" />
+
+    <item
+        android:id="@+id/navigation_lista_usuarios"
+        android:icon="@drawable/ic_lista_usuarios"
+        android:title="Listado de usuarios" />
+    <item
+        android:id="@+id/navigation_gestion_usuarios"
+        android:icon="@drawable/ic_gestion_usuarios"
+        android:title="Gestión de usuarios" />
+
+</menu>

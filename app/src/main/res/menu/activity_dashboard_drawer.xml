@@ -5,11 +5,11 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/lista_incidencias"
+            android:id="@+id/nav_lista_incidencias"
             android:icon="@drawable/ic_listado_incidencias"
             android:title="Listado de incidencias" />
         <item
-            android:id="@+id/gestion_incidencias"
+            android:id="@+id/nav_gestion_incidencias"
             android:icon="@drawable/ic_gestion_incidencias"
             android:title="Gestión de incidencias" />
     </group>
@@ -17,11 +17,11 @@
     <item android:title="Usuarios">
         <menu>
             <item
-                android:id="@+id/lista_usuarios"
+                android:id="@+id/nav_lista_usuarios"
                 android:icon="@drawable/ic_lista_usuarios"
                 android:title="Listado de usuarios" />
             <item
-                android:id="@+id/gestion_usuarios"
+                android:id="@+id/nav_gestion_usuarios"
                 android:icon="@drawable/ic_gestion_usuarios"
                 android:title="Gestión de usuarios" />
         </menu>
