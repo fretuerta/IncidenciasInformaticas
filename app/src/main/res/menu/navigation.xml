@@ -8,7 +8,7 @@
     <item
         android:id="@+id/navigation_gestion_incidencias"
         android:icon="@drawable/ic_gestion_incidencias"
-        android:title="Gestión de incidencias" />
+        android:title="Nueva incidencia" />
 
     <item
         android:id="@+id/navigation_lista_usuarios"
@@ -17,6 +17,6 @@
     <item
         android:id="@+id/navigation_gestion_usuarios"
         android:icon="@drawable/ic_gestion_usuarios"
-        android:title="Gestión de usuarios" />
+        android:title="Nuevo usuario" />
 
 </menu>

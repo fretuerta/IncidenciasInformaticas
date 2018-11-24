@@ -11,9 +11,9 @@ import android.view.MenuItem;
 
 public class BaseActivity extends AppCompatActivity {
 
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle actionBarDrawerToggle;
-    Toolbar toolbar;
+    static DrawerLayout drawerLayout;
+    static ActionBarDrawerToggle actionBarDrawerToggle;
+    static Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,13 @@ public class BaseActivity extends AppCompatActivity {
                     case R.id.nav_gestion_usuarios:
                         startActivity(new Intent(getApplicationContext(), GestionUsuariosActivity.class));
                         drawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_lista_incidencias:
+                        startActivity(new Intent(getApplicationContext(), ListaIncidenciasActivity.class));
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_gestion_incidencias:
+                        startActivity(new Intent(getApplicationContext(), GestionIncidenciasActivity.class));
                         break;
                 }
                 return false;

@@ -17,6 +17,7 @@ public class MainActivity extends BaseActivity {
     static private SQLiteDatabase mDb;
 
     private TextView mTextMessage;
+    /*
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -32,7 +33,7 @@ public class MainActivity extends BaseActivity {
                     return false;
                 }
             };
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

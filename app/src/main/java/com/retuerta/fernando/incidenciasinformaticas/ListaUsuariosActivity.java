@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.widget.FrameLayout;
 
 import com.retuerta.fernando.incidenciasinformaticas.RecyclerViewAdapters.RecyclerViewUsuariosAdapter;
@@ -56,6 +57,23 @@ public class ListaUsuariosActivity extends BaseActivity {
         recyclerViewUsuariosAdapter = new RecyclerViewUsuariosAdapter(context, cursor);
         recyclerView.setAdapter(recyclerViewUsuariosAdapter);
 
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.RIGHT) {
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder targer) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                long id = (long) viewHolder.itemView.getTag();
+                removeArticulo(id);
+                recyclerViewUsuariosAdapter.swapCursor(getAllUsuarios());
+            }
+
+        }).attachToRecyclerView(recyclerView);
+
     }
 
     private static Cursor getAllUsuarios() {
@@ -64,5 +82,14 @@ public class ListaUsuariosActivity extends BaseActivity {
                 null, null, null, null,null,
                 IncidenciasContract.UsuariosEntry._ID
         );
+    }
+
+    public boolean removeArticulo(long id) {
+        boolean hecho;
+        hecho = mDb.delete(IncidenciasContract.UsuariosEntry.TABLE_NAME,
+                IncidenciasContract.UsuariosEntry._ID + "=" + id, null) > 0;
+        // Actualiza el cursor en adapter para actualizar la información del UI
+        if (hecho) recyclerViewUsuariosAdapter.swapCursor(getAllUsuarios());
+        return hecho;
     }
 }

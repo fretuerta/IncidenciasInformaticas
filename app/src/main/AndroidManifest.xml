@@ -21,13 +21,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".GestionUsuariosActivity"
-            android:label="Gestión de usuarios"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ListaUsuariosActivity"
-            android:label="Listado de usuarios"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ListaIncidenciasActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".GestionIncidenciasActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
