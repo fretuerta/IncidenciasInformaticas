@@ -21,16 +21,17 @@ public class GestionIncidenciasActivity extends BaseActivity {
 
     Context context;
     static private SQLiteDatabase mDb;
+    Long id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_gestion_incidencias);
 
         context = getApplicationContext();
 
         Intent intent = getIntent();
-        // String user = intent.getStringExtra("user");
+        id = intent.getLongExtra("id", -1);
 
         setTitle("Añadir una nueva incidencia");
 
@@ -43,16 +44,43 @@ public class GestionIncidenciasActivity extends BaseActivity {
         IncidenciasDbHelper dbHelper = new IncidenciasDbHelper(context);
         mDb = dbHelper.getWritableDatabase();
 
-        Button botonAddIncidencia = findViewById(R.id.button_insertar_incidencia);
+        Button botonAddIncidencia = findViewById(R.id.button_guardar_incidencia);
         botonAddIncidencia.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                insertIncidencia();
+                guardarIncidencia();
             }
         });
 
+        if (id >= 0) { setDataById(); }
     }
 
-    void insertIncidencia() {
+    void setDataById() {
+
+        TextView dniTV = (TextView) findViewById(R.id.editText_i_dni);
+        TextView fechaIncidenciaTV = (TextView) findViewById(R.id.editText_i_fecha);
+        TextView observacionesTV = (TextView) findViewById(R.id.editText_i_observaciones);
+        TextView dniInformaticoTV = (TextView) findViewById(R.id.editText_i_dni_informatico);
+        TextView estadoTV = (TextView) findViewById(R.id.editText_i_estado);
+        TextView fechaResolucionTV = (TextView) findViewById(R.id.editText_i_fecha_resolucion);
+        TextView observacionesInformaticoTV = (TextView) findViewById(R.id.editText_i_observaciones_informatico);
+
+        Cursor cursor = mDb.rawQuery("SELECT * FROM " + IncidenciasContract.IncidenciasEntry.TABLE_NAME +
+                " WHERE " + IncidenciasContract.IncidenciasEntry._ID + " = " + id.toString() + ";", null );
+
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                dniTV.setText(cursor.getString(1));
+                fechaIncidenciaTV.setText(cursor.getString(2));
+                observacionesTV.setText(cursor.getString(3));
+                dniInformaticoTV.setText(cursor.getString(4));
+                estadoTV.setText(cursor.getString(5));
+                fechaResolucionTV.setText(cursor.getString(6));
+                observacionesInformaticoTV.setText(cursor.getString(7));
+            }
+        }
+    }
+
+    void guardarIncidencia() {
 
         TextView dniTV = (TextView) findViewById(R.id.editText_i_dni);
         TextView fechaIncidenciaTV = (TextView) findViewById(R.id.editText_i_fecha);
@@ -76,15 +104,6 @@ public class GestionIncidenciasActivity extends BaseActivity {
 
     public void addIncidenciaToTable(String dni, String fechaIncidencia, String observaciones, String dniInformatico,
                                   String estado, String fechaResolucion, String observacionesInformatico) {
-/*        if (dni.length() == 0 || nombreUsuario.length() == 0) {
-            Toast.makeText(context, "Debe completar el Nombre de Usuario y el DNI.", Toast.LENGTH_SHORT);
-            return;
-        }
-        if (isUsuarioInTable(dni, nombreUsuario)) {
-            Toast.makeText(context, "Ya existe un usuario con el mismo Nombre de Usuario o DNI.", Toast.LENGTH_SHORT);
-            return;
-        }
-*/
 
         ContentValues cv = new ContentValues();
         cv.put(IncidenciasContract.IncidenciasEntry.COLUMN_DNI, dni);
@@ -95,11 +114,15 @@ public class GestionIncidenciasActivity extends BaseActivity {
         cv.put(IncidenciasContract.IncidenciasEntry.COLUMN_FECHA_RESOLUCION_INCIDENCIA, fechaResolucion);
         cv.put(IncidenciasContract.IncidenciasEntry.COLUMN_OBSERVACIONES_INFORMATICO, observacionesInformatico);
 
-        Long resultado = mDb.insert(IncidenciasContract.IncidenciasEntry.TABLE_NAME, null, cv);
+        if (id >= 0) {
+            mDb.update(IncidenciasContract.IncidenciasEntry.TABLE_NAME, cv,
+                    IncidenciasContract.IncidenciasEntry._ID + "=" + id.toString(), null);
+        } else {
+            Long resultado = mDb.insert(IncidenciasContract.IncidenciasEntry.TABLE_NAME, null, cv);
+            if (resultado > 0) Toast.makeText(context, "Incidencia insertada", Toast.LENGTH_SHORT).show();
+        }
 
-        if (resultado > 0) Toast.makeText(context, "Incidencia insertada", Toast.LENGTH_SHORT);
-
-        Intent intent = new Intent(this, ListaIncidenciasActivity.class);
+        Intent intent = new Intent(context, ListaIncidenciasActivity.class);
         startActivity(intent);
 
     }

@@ -91,12 +91,12 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_i_fecha_resolucion" />
 
     <Button
-        android:id="@+id/button_insertar_incidencia"
+        android:id="@+id/button_guardar_incidencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Añadir"
+        android:text="Guardar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_i_observaciones_informatico" />
 

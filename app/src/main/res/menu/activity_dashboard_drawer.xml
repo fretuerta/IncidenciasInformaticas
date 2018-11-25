@@ -4,15 +4,20 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_lista_incidencias"
-            android:icon="@drawable/ic_listado_incidencias"
-            android:title="Listado de incidencias" />
-        <item
-            android:id="@+id/nav_gestion_incidencias"
-            android:icon="@drawable/ic_gestion_incidencias"
-            android:title="Nueva incidencia" />
     </group>
+
+    <item android:title="Incidencias">
+        <menu>
+            <item
+                android:id="@+id/nav_lista_incidencias"
+                android:icon="@drawable/ic_listado_incidencias"
+                android:title="Listado de incidencias" />
+            <item
+                android:id="@+id/nav_gestion_incidencias"
+                android:icon="@drawable/ic_gestion_incidencias"
+                android:title="Nueva incidencia" />
+        </menu>
+    </item>
 
     <item android:title="Usuarios">
         <menu>

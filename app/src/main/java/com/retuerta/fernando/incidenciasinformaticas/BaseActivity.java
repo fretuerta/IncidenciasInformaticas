@@ -31,7 +31,6 @@ public class BaseActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-                final String appPackageName = getPackageName();
 
                 switch (menuItem.getItemId()) {
                     case R.id.nav_lista_usuarios:

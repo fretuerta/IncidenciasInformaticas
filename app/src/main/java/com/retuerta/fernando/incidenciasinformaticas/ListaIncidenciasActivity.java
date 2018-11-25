@@ -29,13 +29,10 @@ public class ListaIncidenciasActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        super.setContentView(R.layout.activity_lista_incidencias);
+
         super.onCreate(savedInstanceState);
 
         context = getApplicationContext();
-
-        Intent intent = getIntent();
-        // String user = intent.getStringExtra("user");
 
         setTitle("Listado de incidencias");
 
@@ -72,6 +69,24 @@ public class ListaIncidenciasActivity extends BaseActivity {
                 long id = (long) viewHolder.itemView.getTag();
                 removeIncidencia(id);
                 recyclerViewIncidenciasAdapter.swapCursor(getAllIncidencias());
+            }
+
+        }).attachToRecyclerView(recyclerView);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder targer) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                long id = (long) viewHolder.itemView.getTag();
+
+                Intent intent = new Intent(context, GestionIncidenciasActivity.class);
+                intent.putExtra("id", id);
+                startActivityForResult(intent,1);
             }
 
         }).attachToRecyclerView(recyclerView);

@@ -27,13 +27,10 @@ public class ListaUsuariosActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        super.setContentView(R.layout.activity_lista_usuarios);
+
         super.onCreate(savedInstanceState);
 
         context = getApplicationContext();
-
-        Intent intent = getIntent();
-        // String user = intent.getStringExtra("user");
 
         setTitle("Listado de usuarios");
 
@@ -57,8 +54,7 @@ public class ListaUsuariosActivity extends BaseActivity {
         recyclerViewUsuariosAdapter = new RecyclerViewUsuariosAdapter(context, cursor);
         recyclerView.setAdapter(recyclerViewUsuariosAdapter);
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-                ItemTouchHelper.RIGHT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
 
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder targer) {
@@ -70,6 +66,24 @@ public class ListaUsuariosActivity extends BaseActivity {
                 long id = (long) viewHolder.itemView.getTag();
                 removeArticulo(id);
                 recyclerViewUsuariosAdapter.swapCursor(getAllUsuarios());
+            }
+
+        }).attachToRecyclerView(recyclerView);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder targer) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                long id = (long) viewHolder.itemView.getTag();
+
+                Intent intent = new Intent(context, GestionUsuariosActivity.class);
+                intent.putExtra("id", id);
+                startActivityForResult(intent,1);
             }
 
         }).attachToRecyclerView(recyclerView);
