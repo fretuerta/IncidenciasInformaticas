@@ -62,7 +62,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Estado de la incidencia"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_i_dni_informatico" />
 
@@ -74,7 +74,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Fecha de resolución"
-        android:inputType="textPersonName"
+        android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_i_estado" />
 
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_i_fecha_resolucion" />
 
     <Button
-        android:id="@+id/button_insertar_usuario"
+        android:id="@+id/button_insertar_incidencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
