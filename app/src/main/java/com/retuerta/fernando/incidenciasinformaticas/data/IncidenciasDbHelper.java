@@ -16,6 +16,10 @@ public class IncidenciasDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
+/*        final String SQL_DROP_USUARIOS_TABLE = "DROP TABLE " +
+                IncidenciasContract.UsuariosEntry.TABLE_NAME;
+        sqLiteDatabase.execSQL(SQL_DROP_USUARIOS_TABLE); */
+
         final String SQL_CREATE_USUARIOS_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 IncidenciasContract.UsuariosEntry.TABLE_NAME + " (" +
                 IncidenciasContract.UsuariosEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -24,7 +28,7 @@ public class IncidenciasDbHelper extends SQLiteOpenHelper {
                 IncidenciasContract.UsuariosEntry.COLUMN_DNI + " TEXT, " +
                 IncidenciasContract.UsuariosEntry.COLUMN_NOMBRE_USUARIO + " TEXT, " +
                 IncidenciasContract.UsuariosEntry.COLUMN_PASSWORD + " TEXT, " +
-                IncidenciasContract.UsuariosEntry.COLUMN_FOTO + " TEXT, " +
+                IncidenciasContract.UsuariosEntry.COLUMN_FOTO + " BLOB, " +
                 IncidenciasContract.UsuariosEntry.COLUMN_TIPO_USUARIO + " TEXT " +
                 ");";
 

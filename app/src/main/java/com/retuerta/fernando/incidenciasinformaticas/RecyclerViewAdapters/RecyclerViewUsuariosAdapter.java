@@ -2,10 +2,13 @@ package com.retuerta.fernando.incidenciasinformaticas.RecyclerViewAdapters;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.retuerta.fernando.incidenciasinformaticas.R;
@@ -30,7 +33,7 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
         public TextView dniTV;
         public TextView nombreUsuarioTV;
         public TextView passwordTV;
-        public TextView fotoTV;
+        public ImageView fotoTV;
         public TextView tipoUsuarioTV;
 
         public ViewHolder(View v) {
@@ -40,7 +43,7 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
             dniTV = (TextView) v.findViewById(R.id.dni_RecyView);
             nombreUsuarioTV = (TextView) v.findViewById(R.id.nombre_usuario_RecyView);
             passwordTV = (TextView) v.findViewById(R.id.password_RecyView);
-            fotoTV = (TextView) v.findViewById(R.id.foto_RecyView);
+            fotoTV = (ImageView) v.findViewById(R.id.foto_RecyView);
             tipoUsuarioTV = (TextView) v.findViewById(R.id.tipo_usuario_RecyView);
         }
     }
@@ -64,16 +67,20 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
         String dni = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_DNI));
         String nombreUsuario = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_NOMBRE_USUARIO));
         String password = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_PASSWORD));
-        String foto = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_FOTO));
+        byte[] foto = mCursor.getBlob(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_FOTO));
+        Bitmap fotoBitmap = null;
+        if (foto != null) fotoBitmap = BitmapFactory.decodeByteArray(foto, 0, foto.length);
         String tipoUsuario = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_TIPO_USUARIO));
         final long id = mCursor.getLong(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry._ID));
+
 
         holder.nombreTV.setText(String.valueOf(nombre));
         holder.apellidosTV.setText(String.valueOf(apellidos));
         holder.dniTV.setText(String.valueOf(dni));
         holder.nombreUsuarioTV.setText(String.valueOf(nombreUsuario));
         holder.passwordTV.setText(String.valueOf(password));
-        holder.fotoTV.setText(String.valueOf(foto));
+        holder.fotoTV.setMaxWidth(200);
+        if (fotoBitmap != null) holder.fotoTV.setImageBitmap(Bitmap.createScaledBitmap(fotoBitmap, 120, 120, false));
         holder.tipoUsuarioTV.setText(String.valueOf(tipoUsuario));
 
         // guarda el id sin presentarlo en pantalla
