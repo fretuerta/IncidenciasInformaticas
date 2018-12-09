@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/apellidos_RecyView" />
 
     <TextView
-        android:id="@+id/nombre_usuario_RecyView"
+        android:id="@+id/tipo_usuario_RecyView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -85,36 +85,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/foto_RecyView"
         app:layout_constraintTop_toBottomOf="@+id/dni_RecyView" />
-
-    <TextView
-        android:id="@+id/password_RecyView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/logo_background"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre_usuario_RecyView" />
-
-    <TextView
-        android:id="@+id/tipo_usuario_RecyView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/logo_background"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_RecyView" />
 
     <ImageView
         android:id="@+id/foto_RecyView"

@@ -1,6 +1,5 @@
 package com.retuerta.fernando.incidenciasinformaticas;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
@@ -17,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +24,6 @@ import com.retuerta.fernando.incidenciasinformaticas.data.IncidenciasDbHelper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 public class GestionUsuariosActivity extends BaseActivity {
 
@@ -107,7 +104,7 @@ public class GestionUsuariosActivity extends BaseActivity {
         TextView nombreUsuarioTV = (TextView) findViewById(R.id.editText_nombre_usuario);
         TextView passwordTV = (TextView) findViewById(R.id.editText_password);
         ImageView fotoIV = (ImageView) findViewById(R.id.image_view_foto);
-        TextView tipoUsuarioTV = (TextView) findViewById(R.id.editText_tipo_usuario);
+        Switch admonSV = (Switch) findViewById(R.id.admonSwitch);
 
         Cursor cursor = mDb.rawQuery("SELECT * FROM " + IncidenciasContract.UsuariosEntry.TABLE_NAME +
                 " WHERE " + IncidenciasContract.UsuariosEntry._ID + " = " + id.toString() + ";", null);
@@ -123,7 +120,11 @@ public class GestionUsuariosActivity extends BaseActivity {
                 Bitmap fotoBitmap = null;
                 if (foto != null) fotoBitmap = BitmapFactory.decodeByteArray(foto, 0, foto.length);
                 if (fotoBitmap != null) fotoIV.setImageBitmap(Bitmap.createScaledBitmap(fotoBitmap, 120, 120, false));
-                tipoUsuarioTV.setText(cursor.getString(7));
+                if (cursor.getString(7).equals("admon")) {
+                    admonSV.setChecked(true);
+                } else {
+                    admonSV.setChecked(false);
+                }
             }
         }
     }
@@ -135,22 +136,28 @@ public class GestionUsuariosActivity extends BaseActivity {
         TextView dniTV = (TextView) findViewById(R.id.editText_dni);
         TextView nombreUsuarioTV = (TextView) findViewById(R.id.editText_nombre_usuario);
         TextView passwordTV = (TextView) findViewById(R.id.editText_password);
-        TextView tipoUsuarioTV = (TextView) findViewById(R.id.editText_tipo_usuario);
+        Switch admonSV = (Switch) findViewById(R.id.admonSwitch);
 
         String nombre = nombreTV.getText().toString();
         String apellidos = apellidosTV.getText().toString();
         String dni = dniTV.getText().toString();
         String nombreUsuario = nombreUsuarioTV.getText().toString();
         String password = passwordTV.getText().toString();
-        String tipoUsuario = tipoUsuarioTV.getText().toString();
+        String tipoUsuario;
+        if (admonSV.isChecked()) {
+            tipoUsuario = "admon";
+        } else {
+            tipoUsuario = "normal";
+        }
 
         imgFoto = (ImageView) findViewById(R.id.image_view_foto);
         imgFoto.setDrawingCacheEnabled(true);
         Bitmap bitmap = imgFoto.getDrawingCache();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+        if (bitmap != null) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+        }
         byte[] foto = baos.toByteArray();
-
 
         this.addUsuarioToTable(nombre, apellidos, dni, nombreUsuario, password,
                 foto, tipoUsuario);

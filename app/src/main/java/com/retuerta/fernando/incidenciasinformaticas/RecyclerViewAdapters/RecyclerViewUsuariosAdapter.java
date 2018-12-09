@@ -31,8 +31,6 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
         public TextView nombreTV;
         public TextView apellidosTV;
         public TextView dniTV;
-        public TextView nombreUsuarioTV;
-        public TextView passwordTV;
         public ImageView fotoTV;
         public TextView tipoUsuarioTV;
 
@@ -41,8 +39,6 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
             nombreTV = (TextView) v.findViewById(R.id.nombre_RecyView);
             apellidosTV = (TextView) v.findViewById(R.id.apellidos_RecyView);
             dniTV = (TextView) v.findViewById(R.id.dni_RecyView);
-            nombreUsuarioTV = (TextView) v.findViewById(R.id.nombre_usuario_RecyView);
-            passwordTV = (TextView) v.findViewById(R.id.password_RecyView);
             fotoTV = (ImageView) v.findViewById(R.id.foto_RecyView);
             tipoUsuarioTV = (TextView) v.findViewById(R.id.tipo_usuario_RecyView);
         }
@@ -65,8 +61,6 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
         String nombre = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_NOMBRE));
         String apellidos = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_APELLIDOS));
         String dni = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_DNI));
-        String nombreUsuario = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_NOMBRE_USUARIO));
-        String password = mCursor.getString(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_PASSWORD));
         byte[] foto = mCursor.getBlob(mCursor.getColumnIndex(IncidenciasContract.UsuariosEntry.COLUMN_FOTO));
         Bitmap fotoBitmap = null;
         if (foto != null) fotoBitmap = BitmapFactory.decodeByteArray(foto, 0, foto.length);
@@ -77,8 +71,6 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
         holder.nombreTV.setText(String.valueOf(nombre));
         holder.apellidosTV.setText(String.valueOf(apellidos));
         holder.dniTV.setText(String.valueOf(dni));
-        holder.nombreUsuarioTV.setText(String.valueOf(nombreUsuario));
-        holder.passwordTV.setText(String.valueOf(password));
         holder.fotoTV.setMaxWidth(200);
         if (fotoBitmap != null) holder.fotoTV.setImageBitmap(Bitmap.createScaledBitmap(fotoBitmap, 120, 120, false));
         holder.tipoUsuarioTV.setText(String.valueOf(tipoUsuario));
@@ -94,7 +86,6 @@ public class RecyclerViewUsuariosAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     public void swapCursor(Cursor newCursor) {
-        // always close the previous mCursor first
         if (mCursor != null) mCursor.close();
         mCursor = newCursor;
         if (newCursor != null) {

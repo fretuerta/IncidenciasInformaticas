@@ -68,25 +68,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toStartOf="@+id/imgFotoIV"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_nombre_usuario" />
 
-    <EditText
-        android:id="@+id/editText_tipo_usuario"
+    <Switch
+        android:id="@+id/admonSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="Tipo usuario"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/imgFotoIV"
+        android:layout_marginTop="16dp"
+        android:switchPadding="16dp"
+        android:text="Administrador"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_password" />
 
@@ -94,23 +91,25 @@
         android:id="@+id/button_guardar_usuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
         android:text="Guardar"
+        app:layout_constraintEnd_toStartOf="@+id/button_take_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_tipo_usuario" />
+        app:layout_constraintTop_toBottomOf="@+id/admonSwitch" />
 
     <Button
         android:id="@+id/button_take_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
         android:text="Imagen"
-        app:layout_constraintEnd_toStartOf="@+id/imgFotoIV"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_guardar_usuario"
-        app:layout_constraintTop_toBottomOf="@+id/editText_tipo_usuario" />
+        app:layout_constraintTop_toBottomOf="@+id/admonSwitch" />
 
     <ImageView
         android:id="@+id/image_view_foto"
