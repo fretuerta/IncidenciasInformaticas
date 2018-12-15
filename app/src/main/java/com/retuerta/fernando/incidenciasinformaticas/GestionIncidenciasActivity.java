@@ -52,6 +52,21 @@ public class GestionIncidenciasActivity extends BaseActivity {
         });
 
         if (id >= 0) { setDataById(); }
+
+        restringirEdicion();
+    }
+
+    void restringirEdicion() {
+        if (!this.tipoUsuarioLogeado.equals("Informático")) {
+            TextView dniInformaticoTV = (TextView) findViewById(R.id.editText_i_dni_informatico);
+            TextView estadoTV = (TextView) findViewById(R.id.editText_i_estado);
+            TextView fechaResolucionTV = (TextView) findViewById(R.id.editText_i_fecha_resolucion);
+            TextView observacionesInformaticoTV = (TextView) findViewById(R.id.editText_i_observaciones_informatico);
+            dniInformaticoTV.setVisibility(View.INVISIBLE);
+            estadoTV.setVisibility(View.INVISIBLE);
+            fechaResolucionTV.setVisibility(View.INVISIBLE);
+            observacionesInformaticoTV.setVisibility(View.INVISIBLE);
+        }
     }
 
     void setDataById() {

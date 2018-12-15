@@ -120,7 +120,7 @@ public class GestionUsuariosActivity extends BaseActivity {
                 Bitmap fotoBitmap = null;
                 if (foto != null) fotoBitmap = BitmapFactory.decodeByteArray(foto, 0, foto.length);
                 if (fotoBitmap != null) fotoIV.setImageBitmap(Bitmap.createScaledBitmap(fotoBitmap, 120, 120, false));
-                if (cursor.getString(7).equals("admon")) {
+                if (cursor.getString(7).equals("Informático")) {
                     admonSV.setChecked(true);
                 } else {
                     admonSV.setChecked(false);
@@ -145,9 +145,9 @@ public class GestionUsuariosActivity extends BaseActivity {
         String password = passwordTV.getText().toString();
         String tipoUsuario;
         if (admonSV.isChecked()) {
-            tipoUsuario = "admon";
+            tipoUsuario = "Informático";
         } else {
-            tipoUsuario = "normal";
+            tipoUsuario = "Normal";
         }
 
         imgFoto = (ImageView) findViewById(R.id.image_view_foto);

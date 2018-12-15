@@ -81,7 +81,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:switchPadding="16dp"
-        android:text="Administrador"
+        android:text="Informático"
         android:textAlignment="viewStart"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
